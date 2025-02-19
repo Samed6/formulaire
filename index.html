@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'inscription</title>
-</head>
-<body>
-    
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Formulaire d'inscription</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Inscription à la formation</h1>
+			<form id="inscription">
+				<div class="group">
+					<label for="nom">Nom</label>
+					<input type="text" id="nom" name="nom" required />
+				</div>
+				<div class="group">
+					<label for="prenom">Prenom</label>
+					<input type="text" id="prenom" name="prenom" required />
+				</div>
+				<div class="group">
+					<label for="date">Date de naissance</label>
+					<input type="date" id="date" name="date" required />
+				</div>
+				<div class="group">
+					<label for="telephone">Numéro de telephone</label>
+					<input
+						type="tel"
+						id="telephone"
+						name="telephone"
+						placeholder="01XXXXXXXX"
+						required
+					/>
+				</div>
+				<div class="group">
+					<label for="motivation">Motivation</label>
+					<textarea name="motivation" id="motivation" rows="10"></textarea>
+					<div id="compteur">0 caractère</div>
+				</div>
+				<button>S'inscrire</button>
+			</form>
+			<div id="resultat" class="hidden">
+				<h2>Récapitulatif de votre inscription</h2>
+				<div id="recapitulatif">
+					<p>
+						<em
+							>Vos informations apparaîtront ici après soumission du
+							formulaire...</em
+						>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
 </html>
