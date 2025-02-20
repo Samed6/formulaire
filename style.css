@@ -6,14 +6,13 @@ body {
 }
 
 .container {
-	max-width: 1400px;
+	max-width: 800px; /* Réduit pour centrer le formulaire */
 	margin: 0 auto;
 	padding: 0;
-	display: grid;
-	grid-template-columns: 60% 40%;
-	gap: 0;
+	display: block; /* Change pour block initialement */
 	background: transparent;
 	box-shadow: none;
+	transition: all 0.5s ease; /* Animation douce */
 }
 
 h1 {
@@ -21,7 +20,7 @@ h1 {
 	text-align: center;
 	margin-bottom: 30px;
 	background: linear-gradient(145deg, #2c3e50, #3498db);
-	background-clip: text; 
+	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	padding: 20px;
 	font-size: 2.5em;
@@ -82,6 +81,7 @@ button:hover {
 }
 
 #resultat {
+	display: none; /* Cache initialement */
 	flex: 0 0 35%;
 	margin-top: 0;
 	position: sticky;
@@ -92,6 +92,7 @@ button:hover {
 	padding: 40px;
 	border-radius: 0 20px 20px 0;
 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+	margin-left: 30px;
 }
 
 #resultat h2 {
@@ -123,6 +124,8 @@ button:hover {
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 	transition: transform 0.2s ease;
 	backdrop-filter: blur(5px);
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 #recapitulatif p:hover {
@@ -153,7 +156,7 @@ button:hover {
 }
 
 .hidden {
-	display: block !important;
+	display: none !important;
 	opacity: 0.7;
 }
 
@@ -173,6 +176,10 @@ button:hover {
 	animation: pulse 2s infinite;
 }
 
+#resultat:not(.hidden) {
+	display: block;
+}
+
 /* Pour l'alerte personnalisée */
 .custom-alert {
 	position: fixed;
@@ -186,6 +193,7 @@ button:hover {
 	z-index: 1000;
 	animation: slideInRight 0.5s ease-out;
 	max-width: 400px;
+	transition: opacity 0.5s ease-out;
 }
 
 @keyframes slideInRight {
@@ -195,6 +203,27 @@ button:hover {
 	to {
 		transform: translateX(0);
 	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.custom-alert.fade-out {
+	animation: fadeOut 0.5s ease-out forwards;
+}
+
+
+.container.submitted {
+	max-width: 1400px;
+	display: grid;
+	grid-template-columns: 60% 40%;
+	gap: 0;
 }
 
 /* La responsivité */
@@ -235,6 +264,11 @@ button:hover {
 		to {
 			transform: translate(-50%, 0);
 		}
+	}
+
+	.container.submitted {
+		grid-template-columns: 1fr;
+		max-width: 800px;
 	}
 }
 

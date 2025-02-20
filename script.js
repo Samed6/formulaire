@@ -21,16 +21,29 @@ function afficherRecapitulatif(donnees) {
     `;
 
 	document.getElementById("resultat").classList.remove("hidden");
+	document.querySelector(".container").classList.add("submitted");
 	//Réinitialisation du formulaire
 	document.getElementById("inscription").reset();
 	document.getElementById("compteur").textContent = "0 caractères";
 }
 
 function showCustomAlert(message) {
+	// Supprimer les alertes existantes
+	const existingAlerts = document.querySelectorAll(".custom-alert");
+	existingAlerts.forEach((alert) => alert.remove());
+
+	// Créer la nouvelle alerte
 	const alert = document.createElement("div");
 	alert.className = "custom-alert";
 	alert.textContent = message;
 	document.body.appendChild(alert);
+
+	// Faire disparaître l'alerte après 5 secondes
+	setTimeout(() => {
+		alert.remove();
+	}, 5000);
+
+	return alert;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -42,6 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	motivation.addEventListener("input", function () {
 		const count = motivation.value.length;
 		compteur.textContent = `${count} caractères`;
+
+		const alerts = document.querySelectorAll(".custom-alert");
+		if (alerts.length > 0) {
+			alerts.forEach((alert) => alert.remove());
+		}
 	});
 
 	form.addEventListener("submit", function (e) {
@@ -85,5 +103,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			telephone,
 			motivation: motivationText,
 		});
+	});
+
+	document.getElementById("telephone").addEventListener("input", function () {
+		const alerts = document.querySelectorAll(".custom-alert");
+		if (alerts.length > 0) {
+			alerts.forEach((alert) => alert.remove());
+		}
+	});
+
+	document.getElementById("date").addEventListener("change", function () {
+		const alerts = document.querySelectorAll(".custom-alert");
+		if (alerts.length > 0) {
+			alerts.forEach((alert) => alert.remove());
+		}
 	});
 });
